@@ -545,6 +545,12 @@ class Game extends Sprite {
 		pipe.y = 0;// -( randomRange( Std.int(150), Std.int( 250) ) ) ; // 75 = 150/2 , 500 = 250 * 2  , 2 is the scaling of near pillars
 		pipeX_Flt += (PIPE_DISTANCE);// + pipe.width  )  ;
 		pipeFarArray_Arr[index_param_int] = pipe;
+		#if android
+		if (S3D.supported) {
+		   S3D.enabled = true;
+		   pipe.z = 0.1;
+		}
+		#end
 		pipeContainerFar_Sp.addChild(pipe);
 		 
 	}
@@ -774,6 +780,9 @@ class Game extends Sprite {
 			
 			if ( currentLevel_Int == 3 )
 			{
+				#if android
+				bird_Mc.z = 0.1;
+				#end
 				currentLevel_Int = 1 ;
 				buttonContainer_Sp.x = (700 - replayButton_Bmp.width) -10  ;
 				buttonContainer_Sp.y = (400 - replayButton_Bmp.height) -10;
@@ -781,6 +790,9 @@ class Game extends Sprite {
 			}
 			else
 			{
+				#if android
+				bird_Mc.z = 0.3;
+				#end
 				buttonContainer_Sp.x = (700 - nextLevelButton_Bmp.width) -10  ;
 				buttonContainer_Sp.y = (400 - nextLevelButton_Bmp.height) -10;
 				buttonContainer_Sp.addChild (nextLevelButton_Bmp);
