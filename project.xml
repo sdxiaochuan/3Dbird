@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="Trippy Bird" package="app.more.more.more" version="1.0.0" company="OpenFL Technologies" />
+	<app path="Export" file="Main" main="app.Main" />
+	
+	< window width="700" height="400" if="flash" />
+	<!--window width="350" height="200" if="flash" /-->
+	<window width="700" height="400" if="desktop" />
+	<window width="700" height="400" if="html5" />
+	<window width="0" height="0" if="android" />
+	
+	<source path="Source" />
+	
+	<haxelib name="openfl" />
+	<haxelib name="actuate" />
+	
+	<ios binaries="armv7" />
+	
+	<assets path="Assets/fonts" rename="fonts" include="*.ttf" />
+	<assets path="Assets/images" rename="images" include="*" exclude="icon.svg" />
+	
+	<haxelib name="swf" />
+	<library id="swflibId" path="Assets/swflib.swf" type="swf" />
+
+
+	<icon path="Assets/images/icon.svg" />
+	
+	<assets path="Assets/sounds" rename="sounds" if="web">
+		<sound path="3.mp3" id="sound3" />
+		<sound path="4.mp3" id="sound4" />
+		<sound path="5.mp3" id="sound5" />
+		<sound path="chirp.mp3" id="chirp_Id" />
+		<music path="theme.mp3" id="soundTheme" />
+	</assets>
+	
+	<assets path="Assets/sounds" rename="sounds" if="html5" />
+	
+	<assets path="Assets/sounds" rename="sounds" unless="web">
+		<sound path="3.wav" id="sound3" />
+		<sound path="4.wav" id="sound4" />
+		<sound path="5.wav" id="sound5" />
+		<sound path="chirp.wav" id="chirp_Id" />
+		<music path="theme.ogg" id="soundTheme" />
+	</assets>
+	
+	<section if="release-sign">
+		<certificate path="path/to/android.keystore" if="android" />
+		<certificate path="path/to/author.p12" if="blackberry" />
+	</section>
+	
+</project>
