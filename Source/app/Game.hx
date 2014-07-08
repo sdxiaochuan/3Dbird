@@ -6,6 +6,7 @@ import flash.display.Sprite;
 import flash.display.Stage;
 import flash.events.Event;
 import flash.events.MouseEvent;
+import flash.events.KeyboardEvent;
 import flash.filters.BlurFilter;
 import flash.filters.DropShadowFilter;
 import flash.geom.Point;
@@ -21,6 +22,10 @@ import openfl.display.MovieClip;
  import flash.media.Sound;
 import flash.media.SoundChannel;
 import flash.media.SoundTransform;
+#if android
+import openfl.display.S3D; 
+#end
+import openfl.Lib;
  
 
 
@@ -119,8 +124,26 @@ class Game extends Sprite {
 	{
 		
 		super ();
+		Lib.current.stage.addEventListener (KeyboardEvent.KEY_UP, stage_onKeyUp);
 	
 	}
+	
+	private function stage_onKeyUp (event:KeyboardEvent):Void {
+		
+		#if android
+		
+		if (event.keyCode == 27) {
+			S3D.enabled = false;
+			event.stopImmediatePropagation ();
+			
+			Lib.exit ();
+			
+		}
+		
+		#end
+		
+	}
+	
 	public function init(stage):Void 
 	{
 		resize(stage);
@@ -181,6 +204,8 @@ class Game extends Sprite {
 		
 	}
 	
+	
+	
 	private function assetLoaded(library:AssetLibrary):Void 
 	{ 
 			bird_Mc = Assets.getMovieClip ("swflibId:BirdSymbol");
@@ -216,6 +241,12 @@ class Game extends Sprite {
 		addChild (pipeContainerFar_Sp);		
 		addChild(haze_Sp);
 		addChild (pipeContainer_Sp);
+		#if android
+		if (S3D.supported) {
+		   S3D.enabled = true;
+		   bird_Mc.z = 0.3;
+		}
+		#end
 		addChild(bird_Mc);
 		
 		addChild (pipeContainerNear_Sp);
@@ -447,6 +478,12 @@ class Game extends Sprite {
 		pipe.y = ( randomRange( Std.int(-250 ), Std.int( 0  ) ) ) ;
 		pipeX_Flt += (PIPE_DISTANCE );//+ pipe.width  )  ;
 		middlePipeArray_Arr[index_param_int] = pipe;
+		#if android
+		if (S3D.supported) {
+		   S3D.enabled = true;
+		   pipe.z = 0.3;
+		}
+		#end
 		pipeContainer_Sp.addChild(pipe);
 		 
 	}
@@ -475,6 +512,12 @@ class Game extends Sprite {
 		pipe.y =  ( randomRange( Std.int( -500), Std.int( 0) ) ) ; // 50 = 100/2 , 500 = 250 * 2  , 2 is the scaling of near pillars
 		pipeX_Flt += (NEAR_PIPE_DISTANCE);// + pipe.width  )  ;
 		pipeNearArray_Arr[index_param_int] = pipe;
+		#if android
+		if (S3D.supported) {
+		   S3D.enabled = true;
+		   pipe.z = 0.5;
+		}
+		#end
 		pipeContainerNear_Sp.addChild(pipe);
 		 
 	}

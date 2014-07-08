@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	
-	<meta title="Trippy Bird" package="app.more.more.more" version="1.0.0" company="OpenFL Technologies" />
+	<meta title="3D Bird" package="app.more.more.more" version="1.0.0" company="OpenFL Technologies" />
 	<app path="Export" file="Main" main="app.Main" />
 	
 	< window width="700" height="400" if="flash" />
 	<!--window width="350" height="200" if="flash" /-->
 	<window width="700" height="400" if="desktop" />
 	<window width="700" height="400" if="html5" />
-	<window width="0" height="0" if="android" />
+	<window width="1920" height="1200" if="android" />
 	
 	<source path="Source" />
 	
